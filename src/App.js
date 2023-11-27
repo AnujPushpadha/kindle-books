@@ -24,11 +24,10 @@ function App() {
           setSearch(value);
           handleSearch(value);
         }}
-        onChange={(e) => setSearch(e.target.value)}
+        
         className="border rounded p-2 mr-2"
       />
       <button
-        onClick={handleSearch}
         className="bg-blue-500 text-white rounded p-2"
       >
         Search
