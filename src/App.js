@@ -3,7 +3,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-   hello wddwdwdw
+      <h1 className='text-3xl font-bold underline'>Hello this is done by tailwind css</h1>
     </div>
   );
 }
