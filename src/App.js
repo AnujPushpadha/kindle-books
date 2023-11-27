@@ -18,9 +18,14 @@ function App() {
       <input
         type="text"
         value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        onChange={(e) => {
+          const value = e.target.value;
+          setSearch(value);
+          handleSearch(value);
+        }}
       />
-      <button onClick={handleSearch}>Search</button>
+
+      <button>Search</button>
 
       <ul>
         {books.map((book, index) => (
