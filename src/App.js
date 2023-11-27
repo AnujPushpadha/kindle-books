@@ -15,7 +15,7 @@ function App() {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 text-center ">
       <input
         type="text"
         value={search}
@@ -25,7 +25,7 @@ function App() {
           handleSearch(value);
         }}
         
-        className="border rounded p-2 mr-2"
+        className="border rounded p-2 mr-2 border-black "
       />
       <button
         className="bg-blue-500 text-white rounded p-2"
