@@ -1,23 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
 
 function App() {
+  const [search, setSearch] = useState("");
+  const [books, setBooks] = useState([]);
+
+  const handleSearch = () => {
+    fetch(`https://www.googleapis.com/books/v1/volumes?q=${search}`)
+      .then((response) => response.json())
+      .then((data) => {
+        const arrayOfBooks = data.items || [];
+        setBooks(arrayOfBooks);
+      });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <input
+        type="text"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+      <button onClick={handleSearch}>Search</button>
+
+      <ul>
+        {books.map((book, index) => (
+          <li key={index}>
+            <img
+              src={book.volumeInfo.imageLinks?.thumbnail}
+              alt={book.volumeInfo.title}
+              style={{ width: "100px", height: "100px" }}
+            />
+            <div>
+              <h3>{book.volumeInfo.title}</h3>
+              <p>Author: {book.volumeInfo.authors?.join(", ")}</p>
+              <p>
+                Price: {book.saleInfo.listPrice?.amount}{" "}
+                {book.saleInfo.listPrice?.currencyCode}
+              </p>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
